@@ -400,7 +400,7 @@ def to_html(
     # once and nothing is formatted into an intermediate first. Interpolating one
     # of them costs a second full copy of it: folding the chunks through
     # `"\n".join(...)` duplicated 4/3 of the payload, and (measured on
-    # `test_html_export_line`, where the ~330 KB client bundle *is* the document)
+    # `test_html_export_line`, where the ~441 KB client bundle *is* the document)
     # interpolating `client_js` into a header part cost ~10% of a small export.
     blob_len = len(blob)
     parts = [
