@@ -934,7 +934,7 @@ Where it must run, and what each environment denies us:
 | Server / CI (native) | no display | headless native path (§8) |
 
 **Bundle size.** The shipped client is a single minified JS bundle —
-`python/xy/static/index.js`, ~277 KB minified / ~76 KB gzipped (vite/oxc; built from
+`python/xy/static/index.js`, ~441 KB minified / ~125 KB gzipped (vite/oxc; built from
 the TypeScript sources in `js/src`) — with no WASM payload and no lazily-loaded trace
 modules. It is a **generated artifact, not committed to git** (§33): the hatch build
 hook runs `node js/build.mjs` at packaging time and force-includes the result into the

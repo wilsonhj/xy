@@ -60,8 +60,9 @@ in plain NumPy. This is deliberate:
 
 - The Python↔ABI path is the shipped path; testing through it covers the
   Rust kernel, the ABI seam, and the Python plumbing in one bite.
-- No new Rust crates. `proptest`/`quickcheck` would need vendoring
-  (crates.io is unreachable from the dev sandbox); the Rust side keeps its
+- No new Rust crates. `proptest`/`quickcheck` would widen the dependency
+  tree against the minimize-don't-prohibit policy, and would need vendoring
+  in any sandbox that cannot reach crates.io; the Rust side keeps its
   example-based `cargo test` suite, and differential testing from Python
   covers the same code through the real boundary.
 - Oracles are O(n) and obvious — a dozen lines of NumPy each. An oracle

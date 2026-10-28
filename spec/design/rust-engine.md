@@ -128,9 +128,10 @@ Rules: `lib.rs` is the only file with `unsafe` (except `simd.rs`, §3.4 rule
 functions over slices (fuzzable, testable without FFI); **dependencies are
 minimized, not prohibited** (policy 2026-07-05): a crate may be added when it
 pays for itself — measured win, small dependency tree, well-maintained — and
-the C-ABI/one-cdylib-per-platform property is preserved. Note the dev sandbox
-cannot reach crates.io, so required crates must be vendored or the sandbox
-loses local build/test; prefer feature-gated optional deps (e.g. SIMD
+the C-ABI/one-cdylib-per-platform property is preserved. The tree is fetched
+from crates.io at build time and nothing is vendored in-tree; where a sandbox
+cannot reach the registry, required crates must be vendored there or that
+sandbox loses local build/test. Prefer feature-gated optional deps (e.g. SIMD
 argminmax, tsdownsample-class speed) with the lean build as default.
 `argminmax` (M4, §3.4) is a plain dependency, not a gated one: the release
 wheels build xy-core with its default Cargo features (`hatch_build.py` runs a

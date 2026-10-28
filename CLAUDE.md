@@ -42,9 +42,11 @@ control.
 - `src/` — Rust core, **minimal external crates** (C ABI; one cdylib per
   platform serves every CPython version). Dependencies are allowed when they
   pay for themselves (measured win, small tree, well-maintained) — minimize,
-  don't prohibit. Caveat: crates.io is unreachable from the dev sandbox, so a
-  required crate must be vendored (`cargo vendor`) or the sandbox loses the
-  ability to build/test the core; prefer feature-gated optional deps. Bump
+  don't prohibit. The crate tree is fetched from crates.io at build time;
+  nothing is vendored in-tree. Where a sandbox can't reach the
+  registry, a required crate must be vendored (`cargo vendor`) there or that
+  sandbox loses the ability to build/test the core; prefer feature-gated
+  optional deps. Bump
   `ABI_VERSION` in `src/lib.rs` *and* `python/xy/_native.py` together
   on any signature change.
 - `python/xy/` — package. `_native.py` (ctypes) binds the required
